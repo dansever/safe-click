@@ -11,26 +11,27 @@ import image3 from '../assets/images/children_using_smartphones.webp';
 const onboardingPages = [
   {
     id: 1,
-    title: 'Welcome to Our App',
-    text: 'Discover amazing features to help you achieve your goals.',
+    title: 'האינטרנט הוא מקום מדהים',
+    text: 'עם המון הזדמנויות לחיבורים, למידה והתפתחות',
     image: image1,
   },
   {
     id: 2,
-    title: 'Stay Connected',
-    text: 'Connect with friends and stay in the loop with what’s happening.',
+    title: '... אבל יש בו גם סכנות מסוימות',
+    text: 'חשוב לדעת איך להתנהל בו בצורה נבונה ואחראית',
     image: image2,
   },
   {
     id: 3,
-    title: 'Get Started',
-    text: 'Join us and make the most out of our platform!',
+    title: 'הצטרפו אלינו ל-קליק חכם',
+    text: 'כאן ב-קליק חכם נלמד יחד מה חשוב לדעת, לזכור וממה כדאי להישמר כשאנו גולשים באינטרנט, בסמארטפון וברשתות החברתיות',
     image: image3,
   },
 ];
 
 export default function Onboarding() {
   const [currentPage, setCurrentPage] = useState(0);
+  const [isExiting, setIsExiting] = useState(false);
   const navigate = useNavigate();
 
   const swipeHandlers = useSwipeable({
@@ -42,7 +43,8 @@ export default function Onboarding() {
     if (currentPage < onboardingPages.length - 1) {
       setCurrentPage(currentPage + 1);
     } else {
-      navigate('/login'); // Navigate to home after the last screen
+      setIsExiting(true);
+      setTimeout(() => navigate('/login'), 500);
     }
   };
 
@@ -53,8 +55,14 @@ export default function Onboarding() {
   };
 
   return (
-    <div {...swipeHandlers} className="onboarding-container">
-      <div className="onboarding-slider" style={{ transform: `translateX(-${currentPage * 100}%)` }}>
+    <div
+      {...swipeHandlers}
+      className={`onboarding-container ${isExiting ? 'fade-out' : ''}`}
+    >
+      <div
+        className="onboarding-slider"
+        style={{ transform: `translateX(-${currentPage * 100}%)` }}
+      >
         {onboardingPages.map((page, index) => (
           <div className="onboarding-page" key={page.id}>
             <img
@@ -64,12 +72,16 @@ export default function Onboarding() {
             />
             <h1 className="onboarding-title">{page.title}</h1>
             <p className="onboarding-text">{page.text}</p>
-            
-            <div className="swipe-hint">
-              <FontAwesomeIcon icon={faArrowRight} size="3x" className="swipe-arrow" />
-            </div>
           </div>
         ))}
+      </div>
+      
+      <div className="swipe-hint">
+        {currentPage < onboardingPages.length? (
+          <FontAwesomeIcon icon={faArrowRight} size="3x" className="swipe-arrow" />
+        ) : (
+          <span className="swipe-text">החלק ימינה להתחלה</span>
+        )}
       </div>
     </div>
   );

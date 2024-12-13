@@ -1,18 +1,29 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from "framer-motion";
 import './App.css';
 import Onboarding from './pages/OnboardingPage';
 import Home from './pages/Home';
 import Login from './pages/Login';
 
-export default function App() {
+function AnimatedRoutes() {
+  const location = useLocation(); // Tracks current route
+
   return (
-    <Router>
-      <Routes>
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Onboarding />} />
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />
       </Routes>
-    </Router>
+    </AnimatePresence>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AnimatedRoutes />
+    </BrowserRouter>
   );
 }
