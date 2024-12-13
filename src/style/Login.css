@@ -44,7 +44,6 @@
     padding: 12px;
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    font-family: var(--font-family-base);
     font-size: 1rem;
   }
   
@@ -58,31 +57,20 @@
     text-align: right; /* Ensures RTL placeholder and text alignment */
   }
   
-  /* Button Styling */
-  button.submit-button {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    background-color: var(--primary-color);
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    text-align: center;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+/* Styling the button */
+.ant-btn-primary {
+    color: var(--main-blue); /* Primary color */
+    font-weight: bold; /* Bold text */
+    background-color: var(--light-blue);
+    /* border: none; Remove border */
+    border-radius: 12px;
+    font-size: 1.6rem; /* Slightly larger font */
+    padding: 36px;
+    margin-top: 24px;
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); Subtle shadow */
+    /* transition: background-color 0.3s ease, transform 0.2s ease; */
   }
   
-  button.submit-button:hover {
-    background-color: var(--secondary-color);
-    transform: translateY(-2px);
-  }
-  
-  button.submit-button:active {
-    background-color: var(--secondary-color);
-    transform: translateY(0);
-  }
   
   /* Add responsiveness */
   @media (max-width: 768px) {

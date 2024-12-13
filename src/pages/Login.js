@@ -42,7 +42,7 @@ export default function Login() {
                             {required: true, message: 'שדה חובה'},
                             {type: 'number', min: 0, max: 120, message: "גיל לא תקין"},
                         ]}>
-                        </>
+                        <InputNumber/>
                     </Form.Item>
                     
                     <Form.Item
@@ -58,10 +58,10 @@ export default function Login() {
                     </Form.Item>
 
                     <Form.Item>
-                    <Button type="primary" htmlType="submit" block>
-                    שלח
-                    </Button>
-                </Form.Item>
+                        <Button type="primary" htmlType="submit" block>
+                        נתחיל!
+                        </Button>
+                    </Form.Item>
                 </Form>
             </div>
         </main>
